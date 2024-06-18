@@ -38,17 +38,18 @@ export default function EditProblemForm({ id, title, description }) {
           <input
             onChange={(e) => setNewTitle(e.target.value)}
             value={newTitle}
-            className="border border-slate-500 px-3 py-2 rounded-[25px]"
+            className="border border-slate-500 px-3 py-2 rounded-[10px]"
             type="text"
             placeholder="Topic Title"
           />
 
-          <input
+          <textarea
             onChange={(e) => setNewDescription(e.target.value)}
             value={newDescription}
-            className="border border-slate-500 px-3 py-2 rounded-[25px]"
+            className="border border-slate-500 px-3 py-2 rounded-[10px]"
             type="text"
             placeholder="Topic Description"
+            rows={2}
           />
 
           <div className="flex justify-center">

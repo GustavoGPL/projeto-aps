@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -6,55 +6,65 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import Link from 'next/link';
+import { HiPencilAlt } from 'react-icons/hi';
+import RemoveBtn from '../../../components/RemoveBtn';
+import { TProblems } from '@/types/problems';
 
-function createData(
-  name: string,
-  calories: number,
-  fat: number,
-  carbs: number,
-  protein: number,
-) {
-  return { name, calories, fat, carbs, protein };
-}
+type TProblemTableProps = {
+	problems: TProblems[];
+	initFetch: () => void;
+};
 
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
-
-export default function ProblemsTable() {
-  return (
-    <TableContainer component={Paper} className='flex justify-center p-20 h-full'>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow
-              key={row.name}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-  );
+export default function ProblemTable({
+	problems,
+	initFetch,
+}: TProblemTableProps) {
+	return (
+		<TableContainer component={Paper} className="flex justify-center h-full">
+			<Table
+				sx={{ minWidth: 650, borderRadius: 20 }}
+				aria-label="simple table"
+				className="max-h-[300px] rounded-[25px] "
+			>
+				<TableHead>
+					<TableRow className="bg-gray-200">
+						<TableCell className="px-4 py-2 font-bold">
+							PROBLEMAS ESTRUTURAIS
+						</TableCell>
+						<TableCell className="px-4 py-2 text-center font-bold">
+							DESCRIÇÃO
+						</TableCell>
+						<TableCell className="px-4 py-2 text-center font-bold">
+							AÇÕES
+						</TableCell>
+					</TableRow>
+				</TableHead>
+				<TableBody>
+					{problems?.map(p => (
+						<TableRow
+							key={p._id}
+							sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+						>
+							<TableCell className="px-4 py-2 text-lg">{p.title}</TableCell>
+							<TableCell className="px-4 py-2 text-center text-lg">
+								{p.description}
+							</TableCell>
+							<TableCell className="px-4 py-2 text-center text-lg">
+								<div className="flex gap-5 justify-center flex-row-reverse">
+									<RemoveBtn id={p._id} initFetch={initFetch} />
+									<Link
+										href={`/editProblem/${p._id}`}
+										className="bg-yellow-200 p-2 rounded-[50%]"
+									>
+										<HiPencilAlt size={24} />
+									</Link>
+								</div>
+							</TableCell>
+						</TableRow>
+					))}
+				</TableBody>
+			</Table>
+		</TableContainer>
+	);
 }
