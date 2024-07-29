@@ -1,15 +1,17 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema } from 'mongoose';
 
 const problemSchema = new Schema(
-    {
-        title: String,
-        description: String
-    },
-    {
-        timestamps: true,
-    }
+	{
+		title: String,
+		description: String,
+		image: String,
+	},
+	{
+		timestamps: true,
+	}
 );
 
-const Problem = mongoose.models.Problem || mongoose.model("Problem", problemSchema);
+const Problem =
+	mongoose.models.Problem || mongoose.model('Problem', problemSchema);
 
 export default Problem;

@@ -19,7 +19,16 @@ const getTopicById = async (id: string) => {
 export default async function EditProblem({ params }: any) {
 	const { id } = params;
 	const { topic } = await getTopicById(id);
-	const { title, description } = topic;
+	const { title, description, image } = topic;
 
-	return <EditProblemForm id={id} title={title} description={description} />;
+	console.log('Imagem', image);
+
+	return (
+		<EditProblemForm
+			id={id}
+			title={title}
+			description={description}
+			image={image}
+		/>
+	);
 }

@@ -6,9 +6,19 @@ import { useRouter } from 'next/navigation';
 export default function AddProblem() {
 	const [title, setTitle] = useState('');
 	const [description, setDescription] = useState('');
+	const [image, setImage] = useState<string | null>(null);
 	const router = useRouter();
 
-	const handleSubmit = async (e: any) => {
+	const convertToBase64 = (file: File): Promise<string> => {
+		return new Promise((resolve, reject) => {
+			const reader = new FileReader();
+			reader.onload = () => resolve(reader.result as string);
+			reader.onerror = reject;
+			reader.readAsDataURL(file);
+		});
+	};
+
+	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 
 		if (!title || !description) {
@@ -17,21 +27,37 @@ export default function AddProblem() {
 		}
 
 		try {
+			const requestBody = {
+				title,
+				description,
+				image,
+			};
+
 			const res = await fetch('http://localhost:3000/api/problems', {
 				method: 'POST',
 				headers: {
-					'Content-type': 'application/json',
+					'Content-Type': 'application/json',
 				},
-				body: JSON.stringify({ title, description }),
+				body: JSON.stringify(requestBody),
 			});
 
 			if (res.ok) {
 				router.push('/inicio');
 			} else {
+				const errorData = await res.json();
+				console.error('Error:', errorData);
 				throw new Error('Failed to create a topic');
 			}
 		} catch (error) {
 			console.log(error);
+		}
+	};
+
+	const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+		const file = e.target.files?.[0];
+		if (file) {
+			const base64 = await convertToBase64(file);
+			setImage(base64);
 		}
 	};
 
@@ -56,6 +82,12 @@ export default function AddProblem() {
 						className="border border-slate-500 px-3 py-2 rounded-lg"
 						placeholder="Descrição do Problema"
 						rows={3}
+					/>
+
+					<input
+						type="file"
+						onChange={handleImageChange}
+						className="border border-slate-500 px-3 py-2 rounded-lg"
 					/>
 
 					<div className="flex justify-center">
