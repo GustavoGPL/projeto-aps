@@ -12,9 +12,12 @@ import { Avatar, Dropdown, MenuProps } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import { signOut, useSession } from 'next-auth/react';
 import { redirect } from 'next/navigation';
+import Image from 'next/image';
 
 export default function Header() {
 	const { data: session } = useSession();
+
+	const userImage = session?.user?.image ?? undefined;
 
 	const handleLogin = () => {
 		if (!session?.user?.email) {
@@ -31,7 +34,7 @@ export default function Header() {
 				<Button
 					onClick={() => {
 						signOut();
-						handleLogin;
+						handleLogin();
 					}}
 				>
 					Sair
@@ -59,8 +62,24 @@ export default function Header() {
 							<div className="max-[640px]:hidden">raestrutura</div>
 						</Link>
 					</Typography>
-					<Dropdown menu={{ items }} placement="bottomLeft" arrow>
-						<Avatar size={40} icon={<UserOutlined />} />
+					<Dropdown
+						className="hover:cursor-pointer"
+						menu={{ items }}
+						placement="bottomLeft"
+						arrow
+						trigger={['click']}
+					>
+						{userImage ? (
+							<div className="w-10 h-10">
+								<img
+									className="rounded-full"
+									src={userImage}
+									alt="User Avatar"
+								/>
+							</div>
+						) : (
+							<Avatar icon={<UserOutlined />} />
+						)}
 					</Dropdown>
 				</Toolbar>
 			</AppBar>

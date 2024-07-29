@@ -2,9 +2,9 @@ import React from 'react';
 import { Space, Table, Tag } from 'antd';
 import type { TableProps } from 'antd';
 import { TProblems } from '@/types/problems';
-import RemoveBtn from '@/app/components/RemoveBtn';
 import { HiPencilAlt } from 'react-icons/hi';
 import Link from 'next/link';
+import RemoveBtn from '@/app/components/RemoveBtn';
 
 type TProblemTableProps = {
 	problems: TProblems[];

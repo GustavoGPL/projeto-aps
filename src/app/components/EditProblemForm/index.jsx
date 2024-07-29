@@ -33,27 +33,26 @@ export default function EditProblemForm({ id, title, description }) {
 
   return (
     <div className="flex justify-center mt-12">
-      <div className="flex flex-col w-1/2 p-[20px] shadow-lg shadow-slate-500 rounded-xl border border-slate-500 justify-center text-black">
-        <form onSubmit={handleSubmit} className="flex justify-center p-6 flex-col gap-3 w-[100%]">
+      <div className="flex flex-col w-full md:max-w-md md:p-6 md:shadow-lg md:shadow-slate-500 md:rounded-xl md:border md:border-slate-500 justify-center text-black">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-3 px-4 md:px-0">
           <input
             onChange={(e) => setNewTitle(e.target.value)}
             value={newTitle}
-            className="border border-slate-500 px-3 py-2 rounded-[10px]"
+            className="border border-slate-500 px-3 py-2 rounded-lg"
             type="text"
-            placeholder="Topic Title"
+            placeholder="Título do Problema"
           />
 
           <textarea
             onChange={(e) => setNewDescription(e.target.value)}
             value={newDescription}
-            className="border border-slate-500 px-3 py-2 rounded-[10px]"
-            type="text"
-            placeholder="Topic Description"
-            rows={2}
+            className="border border-slate-500 px-3 py-2 rounded-lg"
+            placeholder="Descrição do Problema"
+            rows={3}
           />
 
           <div className="flex justify-center">
-            <button className="bg-green-600 font-bold text-white py-3 px-6 w-fit rounded-[25px]">
+            <button className="bg-green-600 font-bold text-white py-2 px-4 rounded-full">
               Atualizar Problema
             </button>
           </div>

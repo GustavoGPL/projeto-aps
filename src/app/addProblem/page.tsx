@@ -35,53 +35,39 @@ export default function AddProblem() {
 		}
 	};
 
-	const props: UploadProps = {
-		name: 'file',
-		action: 'https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188',
-		headers: {
-			authorization: 'authorization-text',
-		},
-		onChange(info) {
-			if (info.file.status !== 'uploading') {
-				console.log(info.file, info.fileList);
-			}
-			if (info.file.status === 'done') {
-				message.success(`${info.file.name} file uploaded successfully`);
-			} else if (info.file.status === 'error') {
-				message.error(`${info.file.name} file upload failed.`);
-			}
-		},
-	};
-
 	return (
-		<div className="flex w-full p-[10px] justify-center text-black">
-			<form
-				onSubmit={handleSubmit}
-				className="p-[20px] rounded-xl border border-slate-500 flex justify-center flex-col gap-3 w-[50%] shadow-lg shadow-slate-500"
-			>
-				<input
-					onChange={e => setTitle(e.target.value)}
-					value={title}
-					className="border border-slate-500 px-8 py-2 rounded-[10px]"
-					type="text"
-					placeholder="Topic Title"
-				/>
-
-				<input
-					onChange={e => setDescription(e.target.value)}
-					value={description}
-					className="border border-slate-500 px-8 py-2 rounded-[10px]"
-					type="text"
-					placeholder="Topic Description"
-				/>
-
-				<button
-					type="submit"
-					className="bg-green-600 font-bold text-white py-3 px-6 w-fit rounded-[25px]"
+		<div className="flex justify-center mt-12">
+			<div className="flex flex-col w-full md:max-w-md md:p-6 md:shadow-lg md:shadow-slate-500 md:rounded-xl md:border md:border-slate-500 justify-center text-black">
+				<form
+					onSubmit={handleSubmit}
+					className="flex flex-col gap-3 px-4 md:px-0"
 				>
-					Adicionar Problema
-				</button>
-			</form>
+					<input
+						onChange={e => setTitle(e.target.value)}
+						value={title}
+						className="border border-slate-500 px-3 py-2 rounded-lg"
+						type="text"
+						placeholder="Título do Problema"
+					/>
+
+					<textarea
+						onChange={e => setDescription(e.target.value)}
+						value={description}
+						className="border border-slate-500 px-3 py-2 rounded-lg"
+						placeholder="Descrição do Problema"
+						rows={3}
+					/>
+
+					<div className="flex justify-center">
+						<button
+							type="submit"
+							className="bg-green-600 font-bold text-white py-2 px-4 rounded-full"
+						>
+							Adicionar Problema
+						</button>
+					</div>
+				</form>
+			</div>
 		</div>
 	);
 }
