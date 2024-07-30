@@ -16,22 +16,14 @@ export default function BasicTable() {
 	const initFetch = useCallback(async () => {
 		try {
 			const response = await axios.get('http://localhost:3000/api/problems');
-			return response.data.problems;
+			setProblems(response?.data?.problems);
+			return response;
 		} catch (error) {
 			console.log(error);
 		}
 	}, []);
 
-	// useEffect(() => {
-	// 	async function fetchData() {
-	// 		const data = await initFetch();
-	// 		setProblems(data);
-	// 	}
-
-	// 	fetchData();
-	// }, []);
-
-	const { data } = useQuery({
+	const { isPending } = useQuery({
 		queryKey: ['getAllProblems'],
 		queryFn: initFetch,
 	});
@@ -49,7 +41,7 @@ export default function BasicTable() {
 			<div className="flex justify-end p-1"></div>
 			<div className="grid grid-cols-1 gap-4">
 				{problems
-					? problems.map((card, index) => (
+					? problems.map((card: any, index: any) => (
 							<CardProblems
 								key={card._id}
 								id={card._id}
@@ -62,7 +54,6 @@ export default function BasicTable() {
 					  ))
 					: ''}
 			</div>
-			{/* <ProblemTable problems={problems} initFetch={initFetch} /> */}
 		</div>
 	);
 }

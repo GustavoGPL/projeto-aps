@@ -86,14 +86,6 @@ export default function AddProblem() {
 						placeholder="Título do Problema"
 					/>
 
-					{/* <input
-						hidden
-						value={session?.user?.email || undefined}
-						className="border border-slate-500 px-3 py-2 rounded-lg"
-						type="text"
-						placeholder="Título do Problema"
-					/> */}
-
 					<textarea
 						onChange={e => setDescription(e.target.value)}
 						value={description}

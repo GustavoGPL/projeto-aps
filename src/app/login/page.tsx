@@ -23,7 +23,7 @@ export default function Login() {
 
 	return (
 		<div className="flex flex-row min-h-screen">
-			<div className="flex items-center top-1/4 justify-center min-h-screen bg-green-500 w-[50%]">
+			<div className="flex items-center top-1/4 justify-center min-h-screen bg-[#D7E6BC] w-[40%]">
 				<div className="bg-white p-10 rounded shadow-md text-center text-black">
 					<h1 className="text-2xl mb-4">Bem-vindo</h1>
 					<p className="mb-4">Faça login para continuar</p>
@@ -60,7 +60,7 @@ export default function Login() {
 					</button>
 				</div>
 			</div>
-			<div className="flex items-center justify-center bg-white w-auto">
+			<div className="flex items-center justify-center bg-white w-full">
 				{/* <Image
 					alt=""
 					width={900}
@@ -68,7 +68,7 @@ export default function Login() {
 					src={'/images/ifceImage.jpg'}
 					// className="!h-full !w-full"
 				/> */}
-				<div className="flex flex-col text-center w-1/2">
+				<div className="flex flex-col text-center w-1/2 text-black">
 					<h1 className="text-7xl font-bold mb-2">
 						<b className="text-green-600">I</b>n
 						<b className="text-green-600">F</b>raestrutura

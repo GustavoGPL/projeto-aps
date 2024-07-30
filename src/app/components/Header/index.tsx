@@ -47,19 +47,13 @@ export default function Header() {
 		<Box sx={{ flexGrow: 1 }}>
 			<AppBar position="static" className="!bg-[#D7E6BC]">
 				<Toolbar>
-					{/* <IconButton
-						size="large"
-						edge="start"
-						color="inherit"
-						aria-label="menu"
-						sx={{ mr: 2 }}
-					>
-						<MenuIcon />
-					</IconButton> */}
 					<Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-						<Link href="/inicio" className=" flex flex-row font-bold">
-							<div className="text-[#36A145]">IF</div>
-							<div className="max-[640px]:hidden">raestrutura</div>
+						<Link
+							href="/inicio"
+							className=" flex flex-row font-bold text-black text-3xl"
+						>
+							<b className="text-green-600">I</b>n
+							<b className="text-green-600">F</b>raestrutura
 						</Link>
 					</Typography>
 					<Dropdown
