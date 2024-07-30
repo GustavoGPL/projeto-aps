@@ -2,16 +2,16 @@
 import React, { useEffect, useCallback, useState } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
-import ProblemTable from './components/Table/table';
 import { TProblems } from '@/types/problems';
 import { useSession } from 'next-auth/react';
 import CardProblems from './components/cards';
+import { useQuery } from '@tanstack/react-query';
 
 export default function BasicTable() {
 	const [problems, setProblems] = useState<TProblems[]>([]);
-	const { data: session } = useSession();
-	console.log('Session', session);
-	// console.log('Imagem', image);
+	// const { data: session } = useSession();
+	// console.log('Session', session);
+	// // console.log('Imagem', image);
 
 	const initFetch = useCallback(async () => {
 		try {
@@ -22,14 +22,19 @@ export default function BasicTable() {
 		}
 	}, []);
 
-	useEffect(() => {
-		async function fetchData() {
-			const data = await initFetch();
-			setProblems(data);
-		}
+	// useEffect(() => {
+	// 	async function fetchData() {
+	// 		const data = await initFetch();
+	// 		setProblems(data);
+	// 	}
 
-		fetchData();
-	}, []);
+	// 	fetchData();
+	// }, []);
+
+	const { data } = useQuery({
+		queryKey: ['getAllProblems'],
+		queryFn: initFetch,
+	});
 
 	return (
 		<div className="bg-white h-full text-black p-[15px]">

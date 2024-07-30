@@ -23,17 +23,20 @@ export default function CardProblems({
 	const { data: session } = useSession();
 	return (
 		<div className="flex flex-col md:flex-row justify-between items-center gap-4 md:gap-8 max-w-auto rounded overflow-hidden border-[1px] border-gray-200 shadow-md bg-white p-4 hover:shadow-lg">
-			<div className="flex items-center flex-col md:flex-row">
-				<Image
-					alt={title}
-					width={150}
-					height={150}
-					src={image}
-					className="mb-4 md:mb-0 md:mr-4"
-				/>
-				<div className="flex flex-col text-center md:text-left">
-					<div className="font-bold text-xl mb-2">{title}</div>
-					<p className="text-gray-700 text-base">{description}</p>
+			<div className="flex items-center flex-col gap-6">
+				<div className="flex w-full">{createdBy}</div>
+				<div className="flex items-center flex-col md:flex-row">
+					<Image
+						alt={title}
+						width={150}
+						height={150}
+						src={image}
+						className="mb-4 md:mb-0 md:mr-4"
+					/>
+					<div className="flex flex-col text-center md:text-left">
+						<div className="font-bold text-xl mb-2">{title}</div>
+						<p className="text-gray-700 text-base">{description}</p>
+					</div>
 				</div>
 			</div>
 
