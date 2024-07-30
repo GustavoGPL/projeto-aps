@@ -5,11 +5,13 @@ import Link from 'next/link';
 import ProblemTable from './components/Table/table';
 import { TProblems } from '@/types/problems';
 import { useSession } from 'next-auth/react';
+import CardProblems from './components/cards';
 
 export default function BasicTable() {
 	const [problems, setProblems] = useState<TProblems[]>([]);
 	const { data: session } = useSession();
 	console.log('Session', session);
+	// console.log('Imagem', image);
 
 	const initFetch = useCallback(async () => {
 		try {
@@ -40,7 +42,22 @@ export default function BasicTable() {
 				</Link>
 			</div>
 			<div className="flex justify-end p-1"></div>
-			<ProblemTable problems={problems} initFetch={initFetch} />
+			<div className="grid grid-cols-1 gap-4">
+				{problems
+					? problems.map((card, index) => (
+							<CardProblems
+								key={card._id}
+								id={card._id}
+								title={card?.title}
+								description={card?.description}
+								image={card?.image}
+								createdBy={card?.createdBy}
+								initFetch={initFetch}
+							/>
+					  ))
+					: ''}
+			</div>
+			{/* <ProblemTable problems={problems} initFetch={initFetch} /> */}
 		</div>
 	);
 }

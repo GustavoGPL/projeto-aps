@@ -45,7 +45,7 @@ export default function Header() {
 
 	return (
 		<Box sx={{ flexGrow: 1 }}>
-			<AppBar position="static" className="bg-[#D7E6BC]">
+			<AppBar position="static" className="!bg-[#D7E6BC]">
 				<Toolbar>
 					{/* <IconButton
 						size="large"

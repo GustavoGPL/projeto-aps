@@ -13,9 +13,9 @@ export const config = {
 export async function POST(request: Request) {
 	try {
 		const data = await request.json();
-		const { title, description, image } = data;
+		const { title, description, image, createdBy } = data;
 
-		if (!title || !description || !image) {
+		if (!title || !description || !image || !createdBy) {
 			return NextResponse.json(
 				{ error: 'Missing required fields' },
 				{ status: 400 }
@@ -27,6 +27,7 @@ export async function POST(request: Request) {
 			title,
 			description,
 			image, // Salvar a string base64 diretamente
+			createdBy,
 		});
 		await newProblem.save();
 

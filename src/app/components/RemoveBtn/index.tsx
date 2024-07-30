@@ -44,6 +44,7 @@ const RemoveBtn: React.FC<RemoveBtnProps> = ({ id, initFetch }) => {
 				danger
 				shape="circle"
 				icon={<HiOutlineTrash size={24} />}
+				style={{ height: '2.8rem', width: '2.8rem' }}
 			/>
 		</Popconfirm>
 	);

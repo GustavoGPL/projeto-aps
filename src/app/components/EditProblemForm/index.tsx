@@ -47,9 +47,11 @@ export default function EditProblemForm({
 			<div className="flex flex-col w-full md:max-w-md md:p-6 md:shadow-lg md:shadow-slate-500 md:rounded-xl md:border md:border-slate-500 justify-center text-black">
 				<form
 					onSubmit={handleSubmit}
-					className="flex flex-col gap-3 px-4 md:px-0"
+					className="flex flex-col justify-center gap-3 px-4 md:px-0"
 				>
-					<Image alt="" width={300} height={300} src={image} />
+					<div className="flex justify-center">
+						<Image alt="" width={300} height={300} src={image} />
+					</div>
 					<input
 						onChange={e => setNewTitle(e.target.value)}
 						value={newTitle}

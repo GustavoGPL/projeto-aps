@@ -2,12 +2,14 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 
 export default function AddProblem() {
 	const [title, setTitle] = useState('');
 	const [description, setDescription] = useState('');
 	const [image, setImage] = useState<string | null>(null);
 	const router = useRouter();
+	const { data: session } = useSession();
 
 	const convertToBase64 = (file: File): Promise<string> => {
 		return new Promise((resolve, reject) => {
@@ -27,10 +29,18 @@ export default function AddProblem() {
 		}
 
 		try {
-			const requestBody = {
+			const createdBy = session?.user?.email || '';
+
+			const requestBody: {
+				title: string;
+				description: string;
+				image: string | null;
+				createdBy: string;
+			} = {
 				title,
 				description,
 				image,
+				createdBy,
 			};
 
 			const res = await fetch('http://localhost:3000/api/problems', {
@@ -75,6 +85,14 @@ export default function AddProblem() {
 						type="text"
 						placeholder="Título do Problema"
 					/>
+
+					{/* <input
+						hidden
+						value={session?.user?.email || undefined}
+						className="border border-slate-500 px-3 py-2 rounded-lg"
+						type="text"
+						placeholder="Título do Problema"
+					/> */}
 
 					<textarea
 						onChange={e => setDescription(e.target.value)}

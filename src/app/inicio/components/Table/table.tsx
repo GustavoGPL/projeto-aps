@@ -1,10 +1,11 @@
 import React from 'react';
-import { Space, Table, Tag } from 'antd';
+import { Button, Space, Table, Tag } from 'antd';
 import type { TableProps } from 'antd';
 import { TProblems } from '@/types/problems';
 import { HiPencilAlt } from 'react-icons/hi';
 import Link from 'next/link';
 import RemoveBtn from '@/app/components/RemoveBtn';
+import { CiShare2 } from 'react-icons/ci';
 
 type TProblemTableProps = {
 	problems: TProblems[];
@@ -39,6 +40,12 @@ export default function ProblemTable({
 					>
 						<HiPencilAlt size={24} />
 					</Link>
+					<Button
+						type="default"
+						className="p-2 rounded-[100px] h-10 bg-blue-500 hover:!bg-blue-500"
+					>
+						<CiShare2 size={24} color="white" />
+					</Button>
 				</div>
 			),
 		},
