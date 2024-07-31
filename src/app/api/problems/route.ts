@@ -8,6 +8,7 @@ export const config = {
 			sizeLimit: '10mb', // Ajuste conforme necessário
 		},
 	},
+	runtime: 'nodejs',
 };
 
 export async function POST(request: Request) {
