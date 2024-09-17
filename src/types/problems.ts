@@ -3,5 +3,6 @@ export type TProblems = {
 	title: string;
 	description: string;
 	image: string;
+	isActive: boolean;
 	createdBy: string;
 };

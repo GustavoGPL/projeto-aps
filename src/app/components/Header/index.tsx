@@ -45,12 +45,15 @@ export default function Header() {
 
 	return (
 		<Box sx={{ flexGrow: 1 }}>
-			<AppBar position="static" className="!bg-[#D7E6BC]">
+			<AppBar
+				position="static"
+				className="flex justify-center !bg-[#D7E6BC] h-24"
+			>
 				<Toolbar>
 					<Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
 						<Link
 							href="/inicio"
-							className=" flex flex-row font-bold text-black text-3xl"
+							className=" flex flex-row font-bold text-black text-3xl w-fit"
 						>
 							<b className="text-green-600">I</b>n
 							<b className="text-green-600">F</b>raestrutura
@@ -64,7 +67,7 @@ export default function Header() {
 						trigger={['click']}
 					>
 						{userImage ? (
-							<div className="w-10 h-10">
+							<div className="w-12 h-12">
 								<img
 									className="rounded-full"
 									src={userImage}

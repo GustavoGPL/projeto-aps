@@ -27,7 +27,8 @@
 		"react": "^18",
 		"react-dom": "^18",
 		"react-icons": "^5.0.1",
-		"react-oauth": "^0.0.1"
+		"react-oauth": "^0.0.1",
+		"string-similarity": "^4.0.4"
 	},
 	"devDependencies": {
 		"@types/formidable": "^3.4.5",

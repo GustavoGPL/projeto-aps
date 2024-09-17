@@ -5,6 +5,7 @@ const problemSchema = new Schema(
 		title: String,
 		description: String,
 		image: String,
+		isActive: Boolean,
 		createdBy: String,
 	},
 	{

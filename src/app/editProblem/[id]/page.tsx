@@ -1,4 +1,4 @@
-import EditProblemForm from '../../components/EditProblemForm';
+import EditProblemForm from './EditProblemForm';
 
 const getTopicById = async (id: string) => {
 	try {
@@ -20,8 +20,6 @@ export default async function EditProblem({ params }: any) {
 	const { id } = params;
 	const { topic } = await getTopicById(id);
 	const { title, description, image } = topic;
-
-	console.log('Imagem', image);
 
 	return (
 		<EditProblemForm

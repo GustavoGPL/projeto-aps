@@ -8,13 +8,12 @@ export const config = {
 			sizeLimit: '10mb', // Ajuste conforme necessário
 		},
 	},
-	runtime: 'nodejs',
 };
 
 export async function POST(request: Request) {
 	try {
 		const data = await request.json();
-		const { title, description, image, createdBy } = data;
+		const { title, description, image, isActive, createdBy } = data;
 
 		if (!title || !description || !image || !createdBy) {
 			return NextResponse.json(
@@ -28,6 +27,7 @@ export async function POST(request: Request) {
 			title,
 			description,
 			image, // Salvar a string base64 diretamente
+			isActive,
 			createdBy,
 		});
 		await newProblem.save();

@@ -1,5 +1,6 @@
 'use client';
-import RemoveBtn from '@/app/components/RemoveBtn';
+import RemoveBtn from '@/app/inicio/components/RemoveBtn';
+import { Tag } from 'antd';
 import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -10,6 +11,7 @@ export default function CardProblems({
 	title,
 	description,
 	image,
+	severity,
 	createdBy,
 	initFetch,
 }: {
@@ -17,21 +19,43 @@ export default function CardProblems({
 	title: string;
 	description: string;
 	image: string;
+	severity: string;
 	createdBy: string;
 	initFetch: () => void;
 }) {
 	const { data: session } = useSession();
 	return (
 		<div className="flex flex-col md:flex-row justify-between items-center gap-4 md:gap-8 max-w-auto rounded overflow-hidden border-[1px] border-gray-200 shadow-md bg-white p-4 hover:shadow-lg">
-			<div className="flex items-center flex-col gap-6">
-				<div className="flex w-full">{createdBy}</div>
+			<div className="flex flex-col gap-6">
+				<div className="flex flex-col text-center md:flex-row gap-4 w-full">
+					<p>
+						<b>Reportado por: </b> {createdBy}
+					</p>
+					<p>
+						<Tag
+							color={
+								severity === 'Crítico'
+									? 'error'
+									: severity === 'Médio'
+									? 'warning'
+									: 'success'
+							}
+						>
+							{severity === 'Crítico'
+								? 'CRÍTICO'
+								: severity === 'Médio'
+								? 'MÈDIO'
+								: 'BAIXO'}
+						</Tag>
+					</p>
+				</div>
 				<div className="flex items-center flex-col md:flex-row">
 					<Image
 						alt={title}
 						width={150}
 						height={150}
 						src={image}
-						className="mb-4 md:mb-0 md:mr-4"
+						className="mb-4 md:mb-0 md:mr-4 border-2 border-slate-100"
 					/>
 					<div className="flex flex-col text-center md:text-left">
 						<div className="font-bold text-xl mb-2">{title}</div>
