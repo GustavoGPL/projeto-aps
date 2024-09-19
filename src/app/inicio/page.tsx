@@ -33,8 +33,33 @@ export default function BasicTable() {
 			'vazamento',
 			'incêndio',
 			'perigoso',
+			'colapso',
+			'desabamento',
+			'curto-circuito',
+			'choque',
+			'eletrocussão',
+			'envenenamento',
+			'tóxico',
+			'grave',
+			'sério',
+			'urgente',
 		];
-		const mediumKeywords = ['falha', 'infiltração', 'lentidão'];
+
+		const mediumKeywords = [
+			'falha',
+			'infiltração',
+			'lentidão',
+			'fissura',
+			'trinca',
+			'desgaste',
+			'vibração',
+			'ruído',
+			'deterioração',
+			'desalinhamento',
+			'bloqueio',
+			'saturação',
+			'instabilidade',
+		];
 
 		const lowerDescription = description.toLowerCase();
 

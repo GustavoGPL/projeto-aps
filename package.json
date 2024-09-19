@@ -20,6 +20,7 @@
 		"axios": "^1.6.7",
 		"firebase": "^10.12.4",
 		"formidable": "^3.5.1",
+		"groq-sdk": "^0.7.0",
 		"jwt-decode": "^3.1.2",
 		"mongoose": "^8.2.1",
 		"next": "14.1.2",

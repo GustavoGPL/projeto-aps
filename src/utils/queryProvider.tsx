@@ -4,6 +4,7 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import { queryClient } from './react-query';
 import Header from '@/app/components/Header';
 import { useSession } from 'next-auth/react';
+import ChatBot from '@/app/components/ChatBot';
 
 export default function QueryProvider({
 	children,
@@ -16,6 +17,7 @@ export default function QueryProvider({
 			{session?.user && <Header />}
 			{/* <ReactQueryDevtools initialIsOpen={false} /> */}
 			{children}
+			{session?.user && <ChatBot />}
 		</QueryClientProvider>
 	);
 }
